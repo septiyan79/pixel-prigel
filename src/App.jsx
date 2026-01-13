@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
 
-const DigitalStickerLandingV2 = () => {
+const App = () => {
   //HANDLE KURSOR ORANGE ======================================
   const cursorRef = useRef(null);
 
@@ -36,10 +36,12 @@ const DigitalStickerLandingV2 = () => {
         <nav className="bg-white/80 backdrop-blur-md border-2 border-orange-600 px-6 py-3 rounded-2xl flex items-center gap-8 shadow-[4px_4px_0px_0px_rgba(234,88,12,1)]">
           <span className="font-black text-xl tracking-tighter text-orange-600">Pixel Prigel</span>
           <div className="hidden md:flex gap-6 text-sm font-bold uppercase tracking-wider">
+            <a href="#" className="hover:text-orange-600">Home</a>
             <a href="#" className="hover:text-orange-600">Stickers</a>
-            <a href="#" className="hover:text-orange-600">About us</a>
+            <a href="#" className="hover:text-orange-600">Our Story</a>
             <a href="#" className="hover:text-orange-600">Marketplace</a>
-            
+            <a href="#" className="hover:text-orange-600">Social Media</a>
+
           </div>
           <div className="h-6 w-0.5 bg-orange-200"></div>
           <button className="relative">
@@ -66,7 +68,7 @@ const DigitalStickerLandingV2 = () => {
             <span className="text-transparent stroke-orange-600" style={{ WebkitTextStroke: '2px #ea580c' }}>REALLY STICK.</span>
           </h1>
           <p className="mt-8 text-lg md:text-xl max-w-xl mx-auto font-medium text-gray-600">
-            Bikin kontenmu lebih "hidup" dengan ribuan koleksi sticker digital unik, lucu, dan estetik.
+            Instant digital sticker designs perfect for DIY, journaling, and creative businesses.
           </p>
         </div>
       </header>
@@ -119,14 +121,14 @@ const DigitalStickerLandingV2 = () => {
         </div>
       </section>
 
-      {/* --- Footer CTA --- */}
+      {/* --- CTA --- */}
       <section className="px-6 py-20">
         <div className="max-w-4xl mx-auto bg-orange-600 rounded-[3rem] p-12 text-center text-white relative overflow-hidden shadow-2xl">
           <div className="relative z-10">
             <h2 className="text-4xl font-black mb-6 italic">JOIN THE STICKER CLUB!</h2>
-            <p className="mb-8 font-medium opacity-90">Dapatkan update koleksi gratis setiap minggu langsung di emailmu.</p>
+            <p className="mb-8 font-medium opacity-90">Stay updated with the hottest promos and enjoy free sticker releases every week!</p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input type="email" placeholder="Email kamu..." className="grow px-6 py-4 rounded-2xl text-gray-900 focus:outline-none" />
+              <input type="email" placeholder="Your email..." className="grow px-6 py-4 rounded-2xl text-gray-900 focus:outline-none" />
               <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-black hover:bg-black transition">JOIN</button>
             </div>
           </div>
@@ -135,7 +137,98 @@ const DigitalStickerLandingV2 = () => {
         </div>
       </section>
 
-      {/* KURSOR ORANGE */}
+      {/* --- FOOTER --- */}
+      <footer className="bg-white border-t-4 border-orange-600 pt-20 pb-10 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+            {/* --- Branding & Tagline --- */}
+            <div className="space-y-6">
+              <h2 className="text-4xl font-black tracking-tighter text-orange-600 italic">Pixel Prigel</h2>
+              <p className="text-gray-600 font-medium leading-relaxed">
+                A platform providing ready-to-use digital sticker designs for DIY, journaling, and creative business needs. Designed for printing, cutting, and immediate use.
+              </p>
+              {/* Social Media Icons */}
+              <div className="flex gap-3">
+                {['Instagram', 'TikTok', 'Twitter', 'Behance'].map((social) => (
+                  <a
+                    key={social}
+                    href="#"
+                    className="w-10 h-10 bg-orange-100 border-2 border-orange-600 rounded-lg flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] hover:translate-y-1 hover:shadow-none transition-all"
+                    title={social}
+                  >
+                    <span className="text-[10px] font-black uppercase tracking-tighter">{social.charAt(0)}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* --- Quick Links --- */}
+            <div>
+              <h4 className="text-xl font-black uppercase italic mb-6 underline decoration-yellow-400 decoration-4">Navigation</h4>
+              <ul className="space-y-4 font-bold text-gray-500">
+                <li><a href="#" className="hover:text-orange-600 transition-colors">New Collection</a></li>
+                <li><a href="#" className="hover:text-orange-600 transition-colors">Bundling Package</a></li>
+                <li><a href="#" className="hover:text-orange-600 transition-colors">Our Story</a></li>
+                <li><a href="#" className="hover:text-orange-600 transition-colors">Marketplace</a></li>
+              </ul>
+            </div>
+
+            {/* --- Support & FAQ --- */}
+            <div>
+              <h4 className="text-xl font-black uppercase italic mb-6 underline decoration-yellow-400 decoration-4">Help Center</h4>
+              <ul className="space-y-4 font-bold text-gray-500">
+                <li><a href="#" className="hover:text-orange-600 transition-colors">How to Download</a></li>
+                {/* <li><a href="#" className="hover:text-orange-600 transition-colors">Lisensi Penggunaan</a></li> */}
+                <li><a href="#" className="hover:text-orange-600 transition-colors">Contact</a></li>
+                {/* <li><a href="#" className="hover:text-orange-600 transition-colors">Kebijakan Privasi</a></li> */}
+              </ul>
+            </div>
+
+            {/* --- Newsletter --- */}
+            <div>
+              <h4 className="text-xl font-black uppercase italic mb-6 underline decoration-yellow-400 decoration-4">Newsletter</h4>
+              <p className="text-sm font-medium text-gray-500 mb-4">Don’t miss out on promo updates and free sticker drops every week!</p>
+              <div className="relative group">
+                <input
+                  type="email"
+                  placeholder="Your email..."
+                  className="w-full px-4 py-3 bg-orange-50 border-2 border-orange-600 rounded-xl font-bold focus:outline-none shadow-[4px_4px_0px_0px_rgba(234,88,12,1)]"
+                />
+                <button className="mt-4 w-full bg-orange-600 text-white py-2 rounded-xl font-black uppercase text-xs tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all">
+                  Subscribe 🚀
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* --- Bottom Section: Payments & Copyright --- */}
+          <div className="pt-10 border-t-2 border-dashed border-orange-200 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex flex-wrap justify-center gap-4 grayscale opacity-60">
+              {/* Placeholder untuk Icon Pembayaran */}
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">GoPay</div>
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">OVO</div>
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">BCA</div>
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">PayPal</div>
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">Visa</div>
+              <div className="bg-gray-100 border border-gray-300 px-3 py-1 rounded text-[10px] font-black italic uppercase">Master Card</div>
+            </div>
+
+            <div className="text-center md:text-right">
+              <p className="text-xs font-bold text-gray-400">
+                © 2024 <span className="text-orange-600 uppercase italic">PIXEL PRIGEL</span> — ALL RIGHTS RESERVED.
+              </p>
+              <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest mt-1">
+                Made with High Caffeine and Love in Indonesia
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+      {/* --- KURSOR ORANGE --- */}
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 w-6 h-6 bg-orange-500 rounded-full pointer-events-none z-9999 transition-transform duration-75 ease-out -ml-3 -mt-3"
@@ -145,6 +238,6 @@ const DigitalStickerLandingV2 = () => {
   );
 };
 
-export default DigitalStickerLandingV2;
+export default App;
 
 
