@@ -22,8 +22,23 @@ export default function Navbar() {
             }>
             Stickers
           </NavLink>
-          <a href="#" className="hover:text-orange-600">Our Story</a>
-          <a href="#" className="hover:text-orange-600">Marketplace</a>
+          <NavLink
+            to="/story"
+            className={({ isActive }) =>
+              `hover:text-orange-600 ${isActive && "text-orange-500"
+              }`
+            }>
+            Our Story
+          </NavLink>
+          <NavLink
+            to="/marketplace"
+            className={({ isActive }) =>
+              `hover:text-orange-600 ${isActive && "text-orange-500"
+              }`
+            }>
+            Marketplace
+          </NavLink>
+          
           <a href="#" className="hover:text-orange-600">Social Media</a>
 
         </div>

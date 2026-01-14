@@ -1,12 +1,7 @@
-import { useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import useCursor from "../hooks/useCursor";
 
 const Stickers = () => {
-    const cursorRef = useRef(null);
-    useCursor(cursorRef);
-
     const categories = ["All Stickers", "Aesthetic", "Cute", "Retro", "Gamer", "Office"];
 
     const products = [
@@ -120,12 +115,6 @@ const Stickers = () => {
             </main>
 
             <Footer />
-
-            {/* --- KURSOR ORANGE --- */}
-            <div
-                ref={cursorRef}
-                className="fixed top-0 left-0 w-6 h-6 bg-orange-500 rounded-full pointer-events-none z-9999 transition-transform duration-75 ease-out -ml-3 -mt-3"
-            />
 
         </div>
     );
