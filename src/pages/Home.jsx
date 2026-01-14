@@ -3,7 +3,8 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import StickerGrid from "../components/StickerGrid";
 import Footer from "../components/Footer";
-import { dummyStickers } from "../data/dummyStickers";
+import Cta from "../components/Cta";
+import { stickers } from "../data/dummyStickers";
 import useCursor from "../hooks/useCursor";
 
 const Home = () => {
@@ -11,16 +12,17 @@ const Home = () => {
   useCursor(cursorRef);
 
   return (
-    <div className="bg-[#FFFBF7] min-h-screen">
+    <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
       <Navbar />
       <Hero />
-      <StickerGrid stickers={dummyStickers} />
+      <StickerGrid stickers={stickers} />
+      <Cta />
       <Footer />
 
-      {/* Cursor */}
+      {/* --- KURSOR ORANGE --- */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-6 h-6 bg-orange-500 rounded-full pointer-events-none -ml-3 -mt-3"
+        className="fixed top-0 left-0 w-6 h-6 bg-orange-500 rounded-full pointer-events-none z-9999 transition-transform duration-75 ease-out -ml-3 -mt-3"
       />
     </div>
   );
