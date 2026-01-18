@@ -1,4 +1,14 @@
+import { FaInstagram } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+
 export default function Footer() {
+    const icons = [
+        { title: "Instagram", icon: FaInstagram },
+        { title: "Tiktok", icon: FaTiktok },
+        { title: "Youtube", icon: FaYoutube },
+    ];
+
     return (
         <footer className="bg-white border-t-4 border-orange-600 pt-20 pb-10 px-6">
             <div className="max-w-7xl mx-auto">
@@ -12,16 +22,20 @@ export default function Footer() {
                         </p>
                         {/* Social Media Icons */}
                         <div className="flex gap-3">
-                            {['Instagram', 'TikTok', 'Twitter', 'Behance'].map((social) => (
-                                <a
-                                    key={social}
-                                    href="#"
-                                    className="w-10 h-10 bg-orange-100 border-2 border-orange-600 rounded-lg flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] hover:translate-y-1 hover:shadow-none transition-all"
-                                    title={social}
-                                >
-                                    <span className="text-[10px] font-black uppercase tracking-tighter">{social.charAt(0)}</span>
-                                </a>
-                            ))}
+                            {icons.map((v, i) => {
+                                const Icon = v.icon;
+                                return (
+                                    <a
+                                        key={i}
+                                        href="#"
+                                        className="w-10 h-10 bg-orange-100 border-2 border-orange-600 rounded-lg flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] hover:translate-y-1 hover:shadow-none transition-all"
+                                        title={v.title}
+                                    >
+                                        {/* <span className="text-[10px] font-black uppercase tracking-tighter">{social.charAt(0)}</span> */}
+                                        <Icon className="text-orange-600 text-xl" />
+                                    </a>
+                                );
+                            })}
                         </div>
                     </div>
 

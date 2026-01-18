@@ -46,7 +46,7 @@ export default function Marketplace() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200 pb-24">
+        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
             {/* --- Floating Navbar (KONSISTEN DENGAN HALAMAN LAIN) --- */}
             <Navbar />
 
@@ -105,7 +105,7 @@ export default function Marketplace() {
             </main>
 
             {/* --- Decorative Elements --- */}
-            <div className="mt-20 flex justify-center gap-10 opacity-20 overflow-hidden select-none py-20">
+            <div className="mt-20 flex justify-center gap-10 opacity-20 overflow-hidden select-none py-6">
                 <span className="text-4xl font-black italic whitespace-nowrap">SHOPEE • TOKOPEDIA • ETSY • GUMROAD • TIKTOK SHOP • </span>
             </div>
 

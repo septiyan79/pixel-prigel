@@ -1,19 +1,20 @@
+import { useEffect, useState } from "react";
+import { getStickers } from "../data/listSticker";
+
+import { Link } from "react-router-dom";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Stickers = () => {
-    const categories = ["All Stickers", "Aesthetic", "Cute", "Retro", "Gamer", "Office"];
+    const [products, setProducts] = useState([]);
+    // const [loading, setLoading] = useState(true);
 
-    const products = [
-        { id: 1, name: "Neon Cyber", price: "25.000", cat: "Aesthetic", color: "bg-blue-100" },
-        { id: 2, name: "Mochi Cat", price: "15.000", cat: "Cute", color: "bg-pink-100" },
-        { id: 3, name: "Pixel Quest", price: "20.000", cat: "Gamer", color: "bg-purple-100" },
-        { id: 4, name: "90s Vibe", price: "18.000", cat: "Retro", color: "bg-yellow-100" },
-        { id: 5, name: "Work Harder", price: "12.000", cat: "Office", color: "bg-green-100" },
-        { id: 6, name: "Space Explorer", price: "22.000", cat: "Aesthetic", color: "bg-indigo-100" },
-        { id: 7, name: "Panda Roll", price: "15.000", cat: "Cute", color: "bg-red-100" },
-        { id: 8, name: "Coffee First", price: "10.000", cat: "Office", color: "bg-orange-100" },
-    ];
+    useEffect(() => {
+        getStickers().then(setProducts);
+    }, []);
+
+    // if (loading) return <p>Loading stickers...</p>;
 
     return (
         <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
@@ -45,7 +46,7 @@ const Stickers = () => {
                     </div>
 
                     {/* Categories Scrollable */}
-                    <div className="flex gap-3 mt-10 overflow-x-auto pb-4 no-scrollbar">
+                    {/* <div className="flex gap-3 mt-10 overflow-x-auto pb-4 no-scrollbar">
                         {categories.map((cat, i) => (
                             <button
                                 key={i}
@@ -54,40 +55,40 @@ const Stickers = () => {
                                 {cat}
                             </button>
                         ))}
-                    </div>
+                    </div> */}
                 </section>
 
                 {/* Product Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {products.map((item) => (
-                        <div key={item.id} className="group relative">
+                    {products.map(product => (
+                        <div key={product.id} className="group relative">
                             {/* Box Shadow Backgroud */}
                             <div className="absolute inset-0 bg-orange-600 rounded-[2.5rem] translate-x-1 translate-y-1 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-300"></div>
 
                             <div className="relative bg-white border-2 border-orange-600 rounded-[2.5rem] p-4 flex flex-col h-full overflow-hidden">
                                 {/* Square Image */}
-                                <div className={`aspect-square rounded-[1.8rem] ${item.color} mb-5 flex items-center justify-center border-2 border-orange-50 relative overflow-hidden`}>
+                                <div className={`aspect-square rounded-[1.8rem] bg-orange-100 mb-5 flex items-center justify-center border-2 border-orange-50 relative overflow-hidden`}>
                                     <img
-                                        src={`https://via.placeholder.com/400x400/FFFFFF/EA580C?text=${item.name.replace(' ', '+')}`}
-                                        alt={item.name}
+                                        src={product.coverImage}
+                                        alt={product.title}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 p-8"
                                     />
                                     {/* Category Badge */}
                                     <div className="absolute top-4 right-4 bg-white border-2 border-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase text-orange-600">
-                                        {item.cat}
+                                        {product.category}
                                     </div>
                                 </div>
 
                                 {/* Info */}
                                 <div className="flex flex-col grow px-2 pb-2">
-                                    <h3 className="text-2xl font-black leading-none mb-2 uppercase italic tracking-tighter">{item.name}</h3>
+                                    <h3 className="text-2xl font-black leading-none mb-2 uppercase italic tracking-tighter">{product.title}</h3>
                                     <p className="text-sm text-gray-500 font-medium mb-4 line-clamp-2">
-                                        Koleksi sticker {item.cat} berkualitas tinggi format PNG & SVG.
+                                        Koleksi sticker {product.category} berkualitas tinggi format PNG & SVG.
                                     </p>
 
                                     <div className="mt-auto">
                                         <div className="text-xl font-black text-orange-600 mb-4 tracking-tight">
-                                            Rp {item.price}
+                                            Rp {product.price.IDR.toLocaleString("id-ID")}
                                         </div>
 
                                         {/* Action Buttons */}
@@ -96,7 +97,7 @@ const Stickers = () => {
                                                 Buy Now
                                             </button>
                                             <button className="w-full py-2 bg-transparent text-gray-400 rounded-xl font-bold text-xs uppercase hover:text-orange-600 transition">
-                                                View Details
+                                                <Link to={`/stickers/${product.id}`}>View Details</Link>
                                             </button>
                                         </div>
                                     </div>

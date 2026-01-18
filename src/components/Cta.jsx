@@ -6,7 +6,7 @@ export default function Cta() {
                     <h2 className="text-4xl font-black mb-6 italic">JOIN THE STICKER CLUB!</h2>
                     <p className="mb-8 font-medium opacity-90">Stay updated with the hottest promos and enjoy free sticker releases every week!</p>
                     <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                        <input type="email" placeholder="Your email..." className="grow px-6 py-4 rounded-2xl text-gray-900 focus:outline-none" />
+                        <input type="email" placeholder="Your email..." className="grow px-6 py-4 rounded-2xl text-gray-900 focus:outline-none border-3 border-dashed border-orange-300" />
                         <button className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-black hover:bg-black transition">JOIN</button>
                     </div>
                 </div>
