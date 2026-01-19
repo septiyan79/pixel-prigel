@@ -43,8 +43,8 @@ export default function OurStory() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     {/* Image Side */}
                     <div className="relative group">
-                        <div className="absolute inset-0 bg-black rounded-[2rem] rotate-3 group-hover:rotate-0 transition-transform duration-300"></div>
-                        <div className="relative bg-orange-100 border-2 border-orange-600 rounded-[2rem] aspect-[4/3] flex items-center justify-center overflow-hidden">
+                        <div className="absolute inset-0 bg-black rounded-4xl rotate-3 group-hover:rotate-0 transition-transform duration-300"></div>
+                        <div className="relative bg-orange-100 border-2 border-orange-600 rounded-4xl aspect-4/3 flex items-center justify-center overflow-hidden">
                             <img
                                 src="../../public/pxp-bg.png"
                                 alt="Creative Workspace"
@@ -59,9 +59,9 @@ export default function OurStory() {
 
                     {/* Text Side */}
                     <div className="space-y-6">
-                        <h2 className="text-4xl font-black uppercase italic tracking-tight">Kenapa Harus Stikko?</h2>
+                        <h2 className="text-4xl font-black uppercase italic tracking-tight">Why Pixel Prigel?</h2>
                         <p className="text-lg text-gray-600 font-medium leading-relaxed">
-                            We believe creativity doesn’t have to be hard, and we’re here to help make your creative process easier and more enjoyable.
+                            We believe creativity doesn't have to be hard, and we're here to help make your creative process easier and more enjoyable.
                         </p>
                         <div className="space-y-4">
                             {values.map((v, i) => (
