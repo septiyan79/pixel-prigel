@@ -53,7 +53,7 @@ export default function Navbar() {
 
         </div>
         <div className="h-6 w-0.5 bg-orange-200"></div>
-        <NavLink to="/admin" className="relative">
+        <NavLink to="/admin/dashboard" className="relative">
           {/* <span className="absolute -top-2 -right-2 bg-orange-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">2</span> */}
           <RiUser5Line className="h-8 w-8 text-orange-600" />
         </NavLink>

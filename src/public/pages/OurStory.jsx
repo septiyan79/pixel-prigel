@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-
 export default function OurStory() {
     const values = [
         { title: "High Quality", desc: "Setiap pixel dipoles dengan cinta agar tajam di semua layar.", icon: "✨" },
@@ -15,10 +12,7 @@ export default function OurStory() {
 
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
-            {/* --- Floating Navbar (Consistent with V2) --- */}
-            <Navbar />
-
+        <>
             {/* --- Hero Section --- */}
             <header className="pt-40 pb-20 px-6">
                 <div className="max-w-4xl mx-auto text-center relative">
@@ -106,10 +100,6 @@ export default function OurStory() {
                     </Link>
                 </div>
             </section>
-
-            <p>
-                <Footer />
-            </p>
-        </div>
+        </>
     );
 }

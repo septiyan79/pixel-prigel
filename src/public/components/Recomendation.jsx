@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStickers } from "../data/listSticker";
+import { getStickers } from "../../data/listSticker";
 
 import { Link } from "react-router-dom";
 

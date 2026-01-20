@@ -1,10 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Recomendation from "../components/Recomendation";
 
 const StickerDetail = () => {
@@ -86,7 +84,6 @@ const StickerDetail = () => {
 
     // Data dummy untuk satu produk spesifik
     const prodoct = {
-
         includes: [
             "50+ Unique Sticker Designs",
             "High-Resolution, 300 DPI PNG (Transparent)",
@@ -96,14 +93,10 @@ const StickerDetail = () => {
             "Free Lifetime Access",
             "A PDF file with Google Drive link to easily access all files"
         ],
-
     };
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
-            {/* --- Floating Navbar (Consistent) --- */}
-            <Navbar />
-
+        <>
             <main className="pt-32 px-6 py-20 max-w-6xl mx-auto">
                 {/* Breadcrumb */}
                 <div className="mb-8 flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400">
@@ -266,9 +259,7 @@ const StickerDetail = () => {
                 <Recomendation />
 
             </main>
-
-            <Footer />
-        </div>
+        </>
     );
 };
 

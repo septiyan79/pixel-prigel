@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import { getStickers } from "../data/listSticker";
+import { getStickers } from "../../data/listSticker";
 
 import { Link } from "react-router-dom";
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const Stickers = () => {
     const [products, setProducts] = useState([]);
@@ -17,10 +14,7 @@ const Stickers = () => {
     // if (loading) return <p>Loading stickers...</p>;
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
-            {/* --- Floating Navbar (Consistent) --- */}
-            <Navbar />
-
+        <>
             {/* --- Main Content --- */}
             <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
 
@@ -114,10 +108,7 @@ const Stickers = () => {
                     <button className="w-12 h-12 bg-white border-2 border-gray-200 rounded-xl font-black text-gray-400 hover:border-orange-600 hover:text-orange-600 transition-all">3</button>
                 </div>
             </main>
-
-            <Footer />
-
-        </div>
+        </>
     );
 };
 

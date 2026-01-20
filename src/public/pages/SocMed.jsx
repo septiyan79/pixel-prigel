@@ -1,6 +1,3 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-
 export default function SocMed() {
     const socials = [
         {
@@ -51,10 +48,7 @@ export default function SocMed() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200 pb-24">
-            {/* --- Floating Navbar --- */}
-            <Navbar />
-
+        <>
             {/* --- Hero Section --- */}
             <header className="pt-32 pb-16 px-6 text-center">
                 <div className="inline-block bg-orange-400 border-2 border-black px-4 py-1 rounded-full font-black text-xs uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6 rotate-2">
@@ -117,9 +111,6 @@ export default function SocMed() {
                 <span className="text-4xl font-black italic whitespace-nowrap">INSTAGRAM • TIKTOK • PINTEREST • TWITTER • YOUTUBE • </span>
             </div>
 
-            {/* --- Simple Footer --- */}
-            <Footer />
-        </div>
-
+        </>
     );
 }

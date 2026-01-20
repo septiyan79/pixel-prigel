@@ -1,6 +1,3 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-
 export default function Marketplace() {
     const marketplaces = [
         {
@@ -46,9 +43,7 @@ export default function Marketplace() {
     ];
 
     return (
-        <div className="min-h-screen bg-[#FFFBF7] text-gray-900 selection:bg-orange-200">
-            {/* --- Floating Navbar (KONSISTEN DENGAN HALAMAN LAIN) --- */}
-            <Navbar />
+        <>
 
             {/* --- Hero Section --- */}
             <header className="pt-32 pb-16 px-6 text-center">
@@ -108,9 +103,6 @@ export default function Marketplace() {
             <div className="mt-20 flex justify-center gap-10 opacity-20 overflow-hidden select-none py-6">
                 <span className="text-4xl font-black italic whitespace-nowrap">SHOPEE • TOKOPEDIA • ETSY • GUMROAD • TIKTOK SHOP • </span>
             </div>
-
-            {/* --- Simple Footer --- */}
-            <Footer />
-        </div>
+        </>
     );
 }
