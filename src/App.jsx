@@ -6,8 +6,8 @@ import OurStory from "./pages/OurStory";
 import Marketplace from "./pages/Marketplace";
 import SocialMedia from "./pages/SocMed";
 
+import AdmLayout from "./admin/layouts/AdmLayout"
 import AdmDashboard from "./admin/pages/AdmDashboard";
-
 
 import Cursor from "./components/Cursor";
 
@@ -23,8 +23,11 @@ const App = () => {
         <Route path="/story" element={<OurStory />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/socialMedia" element={<SocialMedia />} />
+        
+        <Route element={<AdmLayout />}>
+          <Route path="/admin/dashboard" element={<AdmDashboard />} />
+        </Route>
 
-        <Route path="/admin" element={<AdmDashboard />} />
       </Routes>
     </BrowserRouter>
   );

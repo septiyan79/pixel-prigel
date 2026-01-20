@@ -1,4 +1,5 @@
-export default function AdmSidebar( isSidebarOpen ) {
+export default function AdmSidebar( {sidebarOpen} ) {
+
     // Menambah menu agar terlihat efek scroll pada sidebar
     const menuItems = [
         { name: 'Dashboard', icon: '📊', active: true },
@@ -15,11 +16,11 @@ export default function AdmSidebar( isSidebarOpen ) {
     ];
 
     return (
-        <aside className={`${isSidebarOpen ? 'w-52' : 'w-16'} bg-white border-r-2 border-black flex flex-col transition-all duration-300`}>
+        <aside className={`${sidebarOpen ? 'w-52' : 'w-16'} bg-white border-r-2 border-black flex flex-col transition-all duration-300`}>
             {/* Sidebar Header (Fixed inside Sidebar) */}
             <div className="h-14 shrink-0 flex items-center px-4 border-b-2 border-black bg-orange-200">
                 <div className="w-7 h-7 bg-orange-600 border border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-white font-black text-xs">S</div>
-                {isSidebarOpen && <span className="ml-3 font-black text-sm tracking-tighter">STIKKO.ADM</span>}
+                {sidebarOpen && <span className="ml-3 font-black text-sm tracking-tighter">Pixel Prigel - Admin</span>}
             </div>
 
             {/* Sidebar Nav (Scrollable) */}
@@ -33,7 +34,7 @@ export default function AdmSidebar( isSidebarOpen ) {
                                 : 'bg-white border-transparent hover:border-orange-500 hover:bg-orange-50 text-gray-500 hover:text-orange-600'}`}
                     >
                         <span className="text-base">{item.icon}</span>
-                        {isSidebarOpen && <span className="font-bold uppercase text-[10px] tracking-wider">{item.name}</span>}
+                        {sidebarOpen && <span className="font-bold uppercase text-[10px] tracking-wider">{item.name}</span>}
                     </div>
                 ))}
             </nav>
@@ -41,7 +42,7 @@ export default function AdmSidebar( isSidebarOpen ) {
             {/* Sidebar Footer (Fixed at bottom of Sidebar) */}
             <div className="p-2 border-t-2 border-black shrink-0 bg-white">
                 <button className="w-full flex items-center justify-center gap-2 bg-red-50 border border-black p-1.5 rounded-lg font-black text-[10px] uppercase hover:bg-red-500 hover:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-[1px]">
-                    {isSidebarOpen ? 'Logout' : '🚪'}
+                    {sidebarOpen ? 'Logout' : '🚪'}
                 </button>
             </div>
         </aside>

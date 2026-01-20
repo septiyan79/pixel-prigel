@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import AdmLayout from "../layouts/AdmLayout";
-
 const AdmDashboard = () => {
     return (
-        <AdmLayout pageTitle="Dashboard">
+        <>
             {/* Welcome Card */}
             <div className="bg-yellow-300 border-2 border-black p-5 rounded-2xl shadow-[4px_4px_0px_0px_rgba(234,88,12,1)] mb-6 flex justify-between items-center">
                 <div>
@@ -45,7 +42,7 @@ const AdmDashboard = () => {
                     ))}
                 </div>
             </div>
-        </AdmLayout>
+        </>
     );
 };
 
