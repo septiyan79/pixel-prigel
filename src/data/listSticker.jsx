@@ -6,7 +6,7 @@ import {
     orderBy,
     limit as limitQuery,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../firebase/firebase";
 
 export const getStickers = async ({
     limit,
