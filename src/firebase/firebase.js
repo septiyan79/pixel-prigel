@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDlCihxEVyCpbuI_OvTEcRPXeHVSpU5l2A",
-  authDomain: "pixel-prigel.firebaseapp.com",
-  projectId: "pixel-prigel",
-  storageBucket: "pixel-prigel.firebasestorage.app",
-  messagingSenderId: "465940628848",
-  appId: "1:465940628848:web:c7458122bd388d17c73bb5"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
