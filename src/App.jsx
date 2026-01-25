@@ -13,6 +13,7 @@ import SocialMedia from "./public/pages/SocMed";
 
 import AdmLayout from "./admin/layouts/AdmLayout"
 import AdmDashboard from "./admin/pages/AdmDashboard";
+import AdmProduct from "./admin/pages/AdmProduct";
 
 import Login from "./auth/pages/Login";
 import RequireAuth from './auth/guards/requireAuth';
@@ -46,6 +47,7 @@ const App = () => {
           <Route element={<RequireRole allowed={["admin"]} />}>
             <Route path="/admin" element={<AdmLayout />}>
               <Route path="dashboard" element={<AdmDashboard />} />
+              <Route path="product" element={<AdmProduct />} />
             </Route>
           </Route>
         </Route>

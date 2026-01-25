@@ -1,5 +1,5 @@
 import { useAuth } from "../../auth/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { useLogoutConfirm } from "../../hooks/useLogoutConfirm";
 
@@ -20,17 +20,17 @@ export default function AdmSidebar({ sidebarOpen }) {
 
     // Menambah menu agar terlihat efek scroll pada sidebar
     const menuItems = [
-        { name: 'Dashboard', icon: '📊', active: true },
-        { name: 'Inventory', icon: '🎨', active: false },
-        { name: 'Orders', icon: '💰', active: false },
-        { name: 'Customers', icon: '👥', active: false },
-        { name: 'Coupons', icon: '🎟️', active: false },
-        { name: 'Analytics', icon: '📈', active: false },
-        { name: 'Reports', icon: '📄', active: false },
-        { name: 'Marketing', icon: '📢', active: false },
-        { name: 'Support', icon: '🎧', active: false },
-        { name: 'Settings', icon: '⚙️', active: false },
-        { name: 'Log Activity', icon: '📜', active: false },
+        { name: 'Dashboard', icon: '📊', active: true, to: '/admin/dashboard' },
+        { name: 'Product', icon: '🎨', active: false, to: '/admin/product' },
+        // { name: 'Orders', icon: '💰', active: false },
+        // { name: 'Customers', icon: '👥', active: false },
+        // { name: 'Coupons', icon: '🎟️', active: false },
+        // { name: 'Analytics', icon: '📈', active: false },
+        // { name: 'Reports', icon: '📄', active: false },
+        // { name: 'Marketing', icon: '📢', active: false },
+        // { name: 'Support', icon: '🎧', active: false },
+        // { name: 'Settings', icon: '⚙️', active: false },
+        // { name: 'Log Activity', icon: '📜', active: false },
     ];
 
     return (
@@ -44,8 +44,9 @@ export default function AdmSidebar({ sidebarOpen }) {
             {/* Sidebar Nav (Scrollable) */}
             <nav className="flex-1 overflow-y-auto p-2 space-y-1 custom-scrollbar">
                 {menuItems.map((item, i) => (
-                    <div
+                    <NavLink
                         key={i}
+                        to={item.to}
                         className={`flex items-center gap-3 px-3 py-2 rounded-lg border-2 transition-all cursor-pointer
                 ${item.active
                                 ? 'bg-orange-500 text-white border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
@@ -53,7 +54,7 @@ export default function AdmSidebar({ sidebarOpen }) {
                     >
                         <span className="text-base">{item.icon}</span>
                         {sidebarOpen && <span className="font-bold uppercase text-[10px] tracking-wider">{item.name}</span>}
-                    </div>
+                    </NavLink>
                 ))}
             </nav>
 
