@@ -47,7 +47,7 @@ const AdmProduct = () => {
                                     <td className="p-3 text-center">
                                         <button
                                             onClick={() => handleOpenDetail(p)}
-                                            className="bg-white border border-black px-2 py-1 rounded text-[9px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:shadow-none transition-all"
+                                            className="bg-white border border-black px-2 py-1 rounded text-[9px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1px hover:shadow-none transition-all"
                                         >View Detail</button>
                                     </td>
                                 </tr>
