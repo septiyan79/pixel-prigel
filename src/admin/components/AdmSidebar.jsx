@@ -1,4 +1,22 @@
-export default function AdmSidebar( {sidebarOpen} ) {
+import { useAuth } from "../../auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
+import { useLogoutConfirm } from "../../hooks/useLogoutConfirm";
+
+export default function AdmSidebar({ sidebarOpen }) {
+    const navigate = useNavigate();
+    const { logout } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate("/login", { replace: true });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const { confirmLogout } = useLogoutConfirm(handleLogout);
 
     // Menambah menu agar terlihat efek scroll pada sidebar
     const menuItems = [
@@ -41,7 +59,7 @@ export default function AdmSidebar( {sidebarOpen} ) {
 
             {/* Sidebar Footer (Fixed at bottom of Sidebar) */}
             <div className="p-2 border-t-2 border-black shrink-0 bg-white">
-                <button className="w-full flex items-center justify-center gap-2 bg-red-50 border border-black p-1.5 rounded-lg font-black text-[10px] uppercase hover:bg-red-500 hover:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-[1px]">
+                <button onClick={confirmLogout} className="w-full flex items-center justify-center gap-2 bg-red-50 border border-black p-1.5 rounded-lg font-black text-[10px] uppercase hover:bg-red-500 hover:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-1px">
                     {sidebarOpen ? 'Logout' : '🚪'}
                 </button>
             </div>
