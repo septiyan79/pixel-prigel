@@ -133,10 +133,10 @@ const StickerDetail = () => {
                         <div className="relative mt-10">
 
                             {/* Shadow Thumbnail */}
-                            <div className="absolute inset-0 bg-orange-600 rounded-[2rem] translate-x-2 translate-y-2"></div>
+                            <div className="absolute inset-0 bg-orange-600 rounded-4xl translate-x-2 translate-y-2"></div>
 
                             {/* Box Thumbnail */}
-                            <div className="relative bg-white border-3 border-black rounded-[2rem] px-6 py-4 flex items-center gap-4">
+                            <div className="relative bg-white border-3 border-black rounded-4xl px-6 py-4 flex items-center gap-4">
 
                                 {/* Left Button */}
                                 <button
@@ -156,7 +156,7 @@ const StickerDetail = () => {
                                             key={index}
                                             ref={(el) => (thumbRefs.current[index] = el)}
                                             onClick={() => setCurrentImage(index)}
-                                            className={`w-20 h-20 rounded-xl border-2 transition-all flex-shrink-0
+                                            className={`w-20 h-20 rounded-xl border-2 transition-all shrink-0
                                             ${currentImage === index
                                                     ? "border-orange-600 scale-95"
                                                     : "border-black opacity-70 hover:opacity-100"

@@ -8,7 +8,7 @@ export default function AdmNavbar({onToggle}) {
             <div className="flex items-center gap-4">
                 <button
                     onClick={onToggle}
-                    className="p-1.5 border border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-[1px] bg-white"
+                    className="p-1.5 border border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-px bg-white"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h16" />
@@ -21,7 +21,7 @@ export default function AdmNavbar({onToggle}) {
             <div className="relative">
                 <button
                     onClick={() => setProfileOpen(!isProfileOpen)}
-                    className="flex items-center gap-2 px-2 py-1 border-2 border-black rounded-xl bg-white shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+                    className="flex items-center gap-2 px-2 py-1 border-2 border-black rounded-xl bg-white shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
                 >
                     <div className="w-6 h-6 rounded-lg bg-orange-100 border border-black overflow-hidden">
                         <img src="https://via.placeholder.com/30" alt="Admin" className="w-full h-full object-cover" />
