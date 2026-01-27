@@ -40,7 +40,7 @@ const Login = () => {
                 <div className="bg-orange-500 p-10 flex flex-col justify-between relative border-r-4 border-black md:flex">
                     <div className="z-10">
                         <h2 className="text-white text-4xl font-black leading-none italic uppercase tracking-tighter">
-                            Welcome <br /> Back, <br /> Creator!
+                            Welcome <br className="hidden md:block" /> Back, <br /> Creator!
                         </h2>
                         <p className="text-orange-100 mt-4 font-bold text-sm uppercase tracking-wide">
                             Ready to grab some more <br /> sticky goodness?
@@ -48,11 +48,13 @@ const Login = () => {
                     </div>
 
                     {/* Elemen Dekoratif Sticker-like */}
-                    <div className="absolute bottom-10 left-10 transform -rotate-12 bg-white border-2 border-black p-2 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="absolute bottom-10 right-15 md:right-auto md:left-10 transform -rotate-12 bg-white border-2 border-black p-2 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <span className="text-xs font-black uppercase text-orange-600">✨ Pixel Prigel</span>
                     </div>
 
-                    <div className="absolute top-1/2 -right-5 transform -translate-y-1/2 flex flex-col gap-4">
+                    <div className="absolute flex
+                                    flex-row -bottom-12
+                                    md:flex-col md:top-1/2 md:-right-5 transform -translate-y-1/2 gap-4">
                         <div className="w-12 h-12 bg-yellow-300 border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
                         <div className="w-12 h-12 bg-white border-4 border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
                     </div>
