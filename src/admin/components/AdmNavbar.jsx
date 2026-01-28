@@ -1,10 +1,26 @@
 import { useState } from 'react';
 
-export default function AdmNavbar({onToggle}) {
+import { useAuth } from "../../auth/AuthProvider";
+import { useLogoutConfirm } from "../../hooks/useLogoutConfirm";
+
+export default function AdmNavbar({ onToggle, displayName }) {
     const [isProfileOpen, setProfileOpen] = useState(false);
 
+    const { logout } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate("/login", { replace: true });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const { confirmLogout } = useLogoutConfirm(handleLogout);
+
     return (
-        <header className="h-14 bg-orange-50 border-b-2 border-black flex items-center justify-between px-6 shrink-0 z-40">
+        <header className="h-14 bg-orange-200 border-b-2 border-black flex items-center justify-between px-6 shrink-0 z-40">
             <div className="flex items-center gap-4">
                 <button
                     onClick={onToggle}
@@ -23,10 +39,10 @@ export default function AdmNavbar({onToggle}) {
                     onClick={() => setProfileOpen(!isProfileOpen)}
                     className="flex items-center gap-2 px-2 py-1 border-2 border-black rounded-xl bg-white shadow-[3px_3px_0px_0px_rgba(234,88,12,1)] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
                 >
-                    <div className="w-6 h-6 rounded-lg bg-orange-100 border border-black overflow-hidden">
+                    {/* <div className="w-6 h-6 rounded-lg bg-orange-100 border border-black overflow-hidden">
                         <img src="https://via.placeholder.com/30" alt="Admin" className="w-full h-full object-cover" />
-                    </div>
-                    <span className="font-bold text-[11px] uppercase hidden sm:block">Fadhil S.</span>
+                    </div> */}
+                    <span className="font-bold text-[11px] uppercase hidden sm:block">{displayName}</span>
                     <span className="text-[10px]">{isProfileOpen ? '▲' : '▼'}</span>
                 </button>
 
@@ -34,7 +50,10 @@ export default function AdmNavbar({onToggle}) {
                     <div className="absolute right-0 mt-2 w-44 bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden z-50">
                         <button className="w-full p-3 text-left font-bold text-[11px] uppercase hover:bg-orange-50 border-b border-black">Profile</button>
                         <button className="w-full p-3 text-left font-bold text-[11px] uppercase hover:bg-orange-50 border-b border-black">Settings</button>
-                        <button className="w-full p-3 text-left font-bold text-[11px] uppercase text-red-600 hover:bg-red-50">Logout</button>
+                        <button onClick={confirmLogout}
+                                className="w-full p-3 text-left font-bold text-[11px] uppercase text-red-600 hover:bg-red-50">
+                            Logout
+                        </button>
                     </div>
                 )}
             </div>

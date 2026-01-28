@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Hero() {
     return (
         <header className="pt-32 pb-16 px-6 text-center overflow-hidden relative">
@@ -11,7 +13,9 @@ export default function Hero() {
                 </span>
                 <h1 className="text-6xl md:text-8xl font-black mt-6 leading-[0.9] tracking-tight">
                     STICKERS THAT <br />
-                    <span className="text-transparent stroke-orange-600" style={{ WebkitTextStroke: '2px #ea580c' }}>REALLY STICK.</span>
+                    <span className="text-transparent stroke-orange-600" style={{ WebkitTextStroke: '2px #ea580c' }}>
+                        REALLY STICK<NavLink to="/admin/dashboard">.</NavLink>
+                    </span>
                 </h1>
                 <p className="mt-8 text-lg md:text-xl max-w-xl mx-auto font-medium text-gray-600">
                     Instant digital sticker designs perfect for DIY, journaling, and creative businesses.

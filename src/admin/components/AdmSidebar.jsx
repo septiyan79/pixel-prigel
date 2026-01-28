@@ -1,6 +1,8 @@
-import { useAuth } from "../../auth/AuthProvider";
 import { NavLink, useNavigate } from "react-router-dom";
+import { FaChartBar, FaPaintBrush } from "react-icons/fa";
+import { RiLogoutCircleRFill } from "react-icons/ri";
 
+import { useAuth } from "../../auth/AuthProvider";
 import { useLogoutConfirm } from "../../hooks/useLogoutConfirm";
 
 export default function AdmSidebar({ sidebarOpen }) {
@@ -20,8 +22,8 @@ export default function AdmSidebar({ sidebarOpen }) {
 
     // Menambah menu agar terlihat efek scroll pada sidebar
     const menuItems = [
-        { name: 'Dashboard', icon: '📊', active: true, to: '/admin/dashboard' },
-        { name: 'Product', icon: '🎨', active: false, to: '/admin/product' },
+        { name: "Dashboard", icon: <FaChartBar />, to: "/admin/dashboard" },
+        { name: "Product", icon: <FaPaintBrush />, to: "/admin/product" },
         // { name: 'Orders', icon: '💰', active: false },
         // { name: 'Customers', icon: '👥', active: false },
         // { name: 'Coupons', icon: '🎟️', active: false },
@@ -47,8 +49,9 @@ export default function AdmSidebar({ sidebarOpen }) {
                     <NavLink
                         key={i}
                         to={item.to}
-                        className={`flex items-center gap-3 px-3 py-2 rounded-lg border-2 transition-all cursor-pointer
-                ${item.active
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 px-3 py-2 rounded-lg border-2 transition-all cursor-pointer
+                            ${isActive
                                 ? 'bg-orange-500 text-white border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
                                 : 'bg-white border-transparent hover:border-orange-500 hover:bg-orange-50 text-gray-500 hover:text-orange-600'}`}
                     >
@@ -61,7 +64,7 @@ export default function AdmSidebar({ sidebarOpen }) {
             {/* Sidebar Footer (Fixed at bottom of Sidebar) */}
             <div className="p-2 border-t-2 border-black shrink-0 bg-white">
                 <button onClick={confirmLogout} className="w-full flex items-center justify-center gap-2 bg-red-50 border border-black p-1.5 rounded-lg font-black text-[10px] uppercase hover:bg-red-500 hover:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-y-1px">
-                    {sidebarOpen ? 'Logout' : '🚪'}
+                    {sidebarOpen ? 'Logout' : <RiLogoutCircleRFill />}
                 </button>
             </div>
         </aside>

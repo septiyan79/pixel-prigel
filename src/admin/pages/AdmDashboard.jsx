@@ -1,16 +1,10 @@
-// TESTING AUTH
-// import { useAuth } from "../../auth/AuthProvider";
+
 
 const AdmDashboard = () => {
-    // TESTING AUTH
-    // const { user, profile, loading } = useAuth();
-    // if (loading) return <p>Loading...</p>;
+
 
     return (
         <>
-            {/* // TESTING AUTH */}
-            {/* <pre>{JSON.stringify({ user, profile }, null, 2)}</pre> */}
-
             {/* Welcome Card */}
             <div className="bg-yellow-300 border-2 border-black p-5 rounded-2xl shadow-[4px_4px_0px_0px_rgba(234,88,12,1)] mb-6 flex justify-between items-center">
                 <div>
