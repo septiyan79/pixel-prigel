@@ -1,10 +1,10 @@
 import { formatCurrency } from "../../utils/currency";
 
-export default function AdmProductDetail({selectedProduct, handleBackButton}) {
+export default function AdmProductDetail({selectedProduct, handleViewButton}) {
     return (
         <div className="space-y-6">
             <button
-                onClick={handleBackButton}
+                onClick={() => handleViewButton('list')}
                 className="mb-2 text-[10px] font-black uppercase flex items-center gap-1 hover:text-orange-600"
             >
                 ← Back to List

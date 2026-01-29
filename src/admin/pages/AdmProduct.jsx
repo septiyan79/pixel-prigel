@@ -3,9 +3,10 @@ import { getStickers } from '../../data/listSticker';
 
 import AdmProductList from '../components/AdmProductList';
 import AdmProductDetail from '../components/AdmProductDetail';
+import AdmProductCreate from '../components/AdmProductCreate';
 
 const AdmProduct = () => {
-    const [view, setView] = useState('list'); // 'list' or 'detail'
+    const [view, setView] = useState('list'); // 'list' or 'detail' or 'create'
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [products, setProducts] = useState([]);
 
@@ -18,18 +19,27 @@ const AdmProduct = () => {
         setView('detail');
     };
 
-    const handleBackButton = () => {
-        setView('list');
+    const handleViewButton = (v) => {
+        setView(v);
     }
 
     return (
         <>
             {view === 'list' ? (
                 /* --- PRODUCT LIST (TABLE) --- */
-                <AdmProductList products={products} handleOpenDetail={handleOpenDetail} />
-            ) : (
+                <AdmProductList 
+                    products={products} 
+                    handleOpenDetail={handleOpenDetail} 
+                    handleViewButton={handleViewButton} 
+                />
+            ) : view === 'detail' ? (
                 /* --- PRODUCT DETAIL VIEW --- */
-                <AdmProductDetail selectedProduct={selectedProduct} handleBackButton={handleBackButton} />
+                <AdmProductDetail 
+                    selectedProduct={selectedProduct} 
+                    handleViewButton={handleViewButton} 
+                />
+            ) : (
+                <AdmProductCreate handleViewButton={handleViewButton} />
             )}
         </>
     );
