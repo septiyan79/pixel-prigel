@@ -1,13 +1,19 @@
 import { formatCurrency } from "../../utils/currency";
+import { GoChevronLeft } from "react-icons/go";
 
 export default function AdmProductDetail({selectedProduct, handleViewButton}) {
     return (
         <div className="space-y-6">
             <button
                 onClick={() => handleViewButton('list')}
-                className="mb-2 text-[10px] font-black uppercase flex items-center gap-1 hover:text-orange-600"
+                className="group mb-6 flex items-center gap-2 px-3 py-2 bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
             >
-                ← Back to List
+                {/* Ikon Panah dengan animasi geser */}
+                <div className="flex items-center justify-center w-5 h-5 bg-orange-100 border border-black rounded-md group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <GoChevronLeft />
+                </div>
+
+                <span className="font-black text-[10px] uppercase tracking-widest">Back to List</span>
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

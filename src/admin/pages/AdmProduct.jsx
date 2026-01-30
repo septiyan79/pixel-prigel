@@ -3,7 +3,7 @@ import { getStickers } from '../../data/listSticker';
 
 import AdmProductList from '../components/AdmProductList';
 import AdmProductDetail from '../components/AdmProductDetail';
-import AdmProductCreate from '../components/AdmProductCreate';
+import { Outlet } from 'react-router-dom';
 
 const AdmProduct = () => {
     const [view, setView] = useState('list'); // 'list' or 'detail' or 'create'
@@ -24,24 +24,25 @@ const AdmProduct = () => {
     }
 
     return (
-        <>
-            {view === 'list' ? (
-                /* --- PRODUCT LIST (TABLE) --- */
-                <AdmProductList 
-                    products={products} 
-                    handleOpenDetail={handleOpenDetail} 
-                    handleViewButton={handleViewButton} 
-                />
-            ) : view === 'detail' ? (
-                /* --- PRODUCT DETAIL VIEW --- */
-                <AdmProductDetail 
-                    selectedProduct={selectedProduct} 
-                    handleViewButton={handleViewButton} 
-                />
-            ) : (
-                <AdmProductCreate handleViewButton={handleViewButton} />
-            )}
-        </>
+        <Outlet />
+        // <>
+        //     {view === 'list' ? (
+        //         /* --- PRODUCT LIST (TABLE) --- */
+        //         <AdmProductList 
+        //             products={products} 
+        //             handleOpenDetail={handleOpenDetail} 
+        //             handleViewButton={handleViewButton} 
+        //         />
+        //     ) : view === 'detail' ? (
+        //         /* --- PRODUCT DETAIL VIEW --- */
+        //         <AdmProductDetail 
+        //             selectedProduct={selectedProduct} 
+        //             handleViewButton={handleViewButton} 
+        //         />
+        //     ) : (
+        //         <AdmProductCreate handleViewButton={handleViewButton} />
+        //     )}
+        // </>
     );
 };
 

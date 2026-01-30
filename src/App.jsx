@@ -14,11 +14,14 @@ import SocialMedia from "./public/pages/SocMed";
 import AdmLayout from "./admin/layouts/AdmLayout"
 import AdmDashboard from "./admin/pages/AdmDashboard";
 import AdmProduct from "./admin/pages/AdmProduct";
+import AdmProductCreate from './admin/pages/AdmProductCreate';
+import AdmProductList from './admin/components/AdmProductList';
 
 import Login from "./auth/pages/Login";
 import RequireAuth from './auth/guards/requireAuth';
 import RequireRole from './auth/guards/RequireRole';
 import RequireGuest from "./auth/guards/RequireGuest";
+import AdmProductDetail from './admin/components/AdmProductDetail';
 
 const App = () => {
 
@@ -47,7 +50,11 @@ const App = () => {
           <Route element={<RequireRole allowed={["admin"]} />}>
             <Route path="/admin" element={<AdmLayout />}>
               <Route path="dashboard" element={<AdmDashboard />} />
-              <Route path="product" element={<AdmProduct />} />
+              <Route path="product" element={<AdmProduct />} >
+                <Route path="create" element={<AdmProductCreate />} />
+                <Route path="detail" element={<AdmProductDetail />} />
+                <Route path="list" element={<AdmProductList />} />
+              </Route>
             </Route>
           </Route>
         </Route>
