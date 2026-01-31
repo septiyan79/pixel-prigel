@@ -49,6 +49,7 @@ export default function AdmSidebar({ sidebarOpen }) {
                     <NavLink
                         key={i}
                         to={item.to}
+                        end={false}
                         className={({ isActive }) =>
                             `flex items-center gap-3 px-3 py-2 rounded-lg border-2 transition-all cursor-pointer
                             ${isActive

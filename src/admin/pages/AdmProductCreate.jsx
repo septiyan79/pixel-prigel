@@ -2,8 +2,9 @@ import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { GoChevronLeft, GoPlus, GoCloud, GoFileDirectory } from "react-icons/go";
+import { NavLink } from "react-router-dom";
 
-export default function AdmProductCreate({ handleViewButton }) {
+export default function AdmProductCreate() {
     const [form, setForm] = useState({
         title: "",
         slug: "",
@@ -70,37 +71,37 @@ export default function AdmProductCreate({ handleViewButton }) {
 
 
     return (
-        <div className="max-w-6xl mx-auto pb-20">
+        <div className="space-y-6">
             {/* --- TOP NAVIGATION --- */}
-            <div className="flex items-center justify-between mb-8">
-                <button
-                    onClick={() => handleViewButton('list')}
-                    className="group flex items-center gap-2 px-4 py-2 bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+            <div className="flex items-center justify-between">
+                <NavLink
+                    to="/admin/product/"
+                    className="group mb-6 flex items-center gap-2 px-3 py-2 bg-white border-2 border-black rounded-xl shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
                 >
-                    <div className="flex items-center justify-center w-6 h-6 bg-orange-100 border border-black rounded-lg group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                        <GoChevronLeft className="text-lg" />
+                    <div className="flex items-center justify-center w-5 h-5 bg-orange-100 border border-black rounded-lg group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                        <GoChevronLeft />
                     </div>
-                    <span className="font-black text-[11px] uppercase tracking-tighter">Back to Inventory</span>
-                </button>
+                    <span className="font-black text-[10px] uppercase tracking-widest">Back to List</span>
+                </NavLink>
 
                 <div className="flex gap-3">
-                    <button className="px-6 py-2 bg-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-[2px] transition-all">
+                    <button className="px-6 py-2 bg-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
                         Save Draft
                     </button>
                     <button
                         onClick={handleSubmit}
-                        className="px-6 py-2 bg-orange-600 text-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-[2px] transition-all"
+                        className="px-6 py-2 bg-orange-600 text-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all"
                     >
-                        Publish Now 🚀
+                        Publish Now
                     </button>
                 </div>
             </div>
 
-            <div className="mb-10">
-                <span className="text-[10px] font-black uppercase bg-yellow-400 border border-black px-2 py-0.5 w-fit italic mb-2 block shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <div className="mb-6">
+                {/* <span className="text-[10px] font-black uppercase bg-yellow-400 border border-black px-2 py-0.5 w-fit italic mb-2 block shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                     New Collection
-                </span>
-                <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">Create Product Asset</h1>
+                </span> */}
+                <h4 className="text-2xl font-black uppercase italic tracking-tighter leading-none">Create Product Asset</h4>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">

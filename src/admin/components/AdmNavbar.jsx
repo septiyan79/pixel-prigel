@@ -30,7 +30,7 @@ export default function AdmNavbar({ onToggle, displayName }) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <h2 className="font-black uppercase italic tracking-tight text-sm hidden md:block">AAA</h2>
+                {/* <h2 className="font-black uppercase italic tracking-tight text-sm hidden md:block">AAA</h2> */}
             </div>
 
             {/* User Profile Dropdown */}

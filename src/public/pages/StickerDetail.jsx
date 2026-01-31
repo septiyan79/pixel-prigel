@@ -45,7 +45,7 @@ const StickerDetail = () => {
     useEffect(() => {
         setCurrentImage(0);
     }, [productId]);
-    // end REDET IMAGE
+    // end RESET IMAGE
 
     // IMAGE
     const images = product

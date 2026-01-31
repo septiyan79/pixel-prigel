@@ -1,13 +1,24 @@
-import { formatCurrency } from "../../utils/currency";
+import { useState, useEffect } from "react";
 
-export default function AdmProductList({ products, handleOpenDetail, handleViewButton }) {
+import { formatCurrency } from "../../utils/currency";
+import { getStickers } from '../../data/listSticker';
+import { NavLink } from "react-router-dom";
+
+export default function AdmProductList({ handleViewButton }) {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getStickers().then(setProducts);
+    }, []);
+
     return (
         <>
             <div className="flex items-center justify-between mb-4">
                 <h2 className="uppercase font-bold tracking-wider text-sm">List of Product</h2>
-                <button onClick={() => handleViewButton('create')} className="flex items-center gap-3 px-3 py-2 rounded-lg border-2 transition-all cursor-pointer bg-orange-500 text-white border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <NavLink to="/admin/product/create" 
+                        className="px-6 py-2 bg-orange-600 text-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
                     Create New
-                </button>
+                </NavLink>
             </div>
 
             <div className="bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
@@ -38,10 +49,10 @@ export default function AdmProductList({ products, handleOpenDetail, handleViewB
                                 </td>
                                 <td className="p-3 border-r-2 border-black/5 font-black text-xs">{formatCurrency(p.price.IDR)}</td>
                                 <td className="p-3 text-center">
-                                    <button
-                                        onClick={() => handleOpenDetail(p)}
+                                    <NavLink
+                                        to={`/admin/product/${p.id}`}
                                         className="bg-white border border-black px-2 py-1 rounded text-[9px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1px hover:shadow-none transition-all"
-                                    >View Detail</button>
+                                    >View Detail</NavLink>
                                 </td>
                             </tr>
                         ))}

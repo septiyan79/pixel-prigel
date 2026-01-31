@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
-import { getStickers } from '../../data/listSticker';
+import { useState } from 'react';
 
-import AdmProductList from '../components/AdmProductList';
-import AdmProductDetail from '../components/AdmProductDetail';
 import { Outlet } from 'react-router-dom';
 
 const AdmProduct = () => {
     const [view, setView] = useState('list'); // 'list' or 'detail' or 'create'
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        getStickers().then(setProducts);
-    }, []);
+    
 
     const handleOpenDetail = (product) => {
         setSelectedProduct(product);
