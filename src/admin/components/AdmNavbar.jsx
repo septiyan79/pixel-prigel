@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../auth/AuthProvider";
 import { useLogoutConfirm } from "../../hooks/useLogoutConfirm";
 
@@ -7,6 +7,8 @@ export default function AdmNavbar({ onToggle, displayName }) {
     const [isProfileOpen, setProfileOpen] = useState(false);
 
     const { logout } = useAuth();
+
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
