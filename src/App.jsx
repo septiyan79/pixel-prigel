@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import Cursor from "./hooks/Cursor";
+import useIdleLogout from './hooks/useIdleLogout';
 
 import PubLayout from './public/layouts/pubLayout';
 import Home from './public/pages/Home';
@@ -24,6 +25,7 @@ import RequireRole from './auth/guards/RequireRole';
 import RequireGuest from "./auth/guards/RequireGuest";
 
 const App = () => {
+  useIdleLogout();
 
   return (
     <BrowserRouter>
