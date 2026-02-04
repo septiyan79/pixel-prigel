@@ -4,7 +4,7 @@ import { formatCurrency } from "../../utils/currency";
 import { getStickers } from '../../data/listSticker';
 import { NavLink } from "react-router-dom";
 
-export default function AdmProductList({ handleViewButton }) {
+export default function AdmProductList() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export default function AdmProductList({ handleViewButton }) {
             </div>
 
             <div className="bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
-
+                {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
 
                 <table className="w-full text-left border-collapse">
                     <thead className="bg-orange-50 border-b-2 border-black">
@@ -50,7 +50,7 @@ export default function AdmProductList({ handleViewButton }) {
                                 <td className="p-3 border-r-2 border-black/5 font-black text-xs">{formatCurrency(p.price.IDR)}</td>
                                 <td className="p-3 text-center">
                                     <NavLink
-                                        to={`/admin/product/${p.id}`}
+                                        to={`/admin/product/${p.slug}`}
                                         className="bg-white border border-black px-2 py-1 rounded text-[9px] font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1px hover:shadow-none transition-all"
                                     >View Detail</NavLink>
                                 </td>

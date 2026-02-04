@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { GoChevronLeft, GoPlus, GoCloud, GoFileDirectory } from "react-icons/go";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -23,13 +23,33 @@ export default function AdmProductCreate() {
 
     const navigate = useNavigate();
 
+    // HADLE SLUG ===========================================================
+    const getBaseSlug = (title) => {
+        return title
+            .toLowerCase()
+            .trim()
+            .split(/\s+/)
+            .slice(0,2)
+            .join("-")
+            .replace(/[^a-z0-9-]/g, "");
+    };
+
+    const generatePrefix = () => {
+        return Math.random()
+            .toString(36)
+            .substring(2,6);
+    };
+
+    const generateSlug = (title) => {
+        const base = getBaseSlug(title);
+        const prefix = generatePrefix();
+        return `${base}-digital-sticker-${prefix}`
+    }
+
     useEffect(() => {
         setForm(prev => ({
             ...prev,
-            slug: prev.title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/(^-|-$)/g, "")
+            slug: generateSlug(prev.title)
         }));
     }, [form.title]);
 
@@ -51,9 +71,9 @@ export default function AdmProductCreate() {
         }
 
         try {
-            const productRef = doc(db, "products", form.slug);
+            const productRef = collection(db, "products");
 
-            await setDoc(productRef, {
+            await addDoc(productRef, {
                 title: form.title,
                 slug: form.slug,
                 category: form.category,
@@ -189,7 +209,7 @@ export default function AdmProductCreate() {
                                             type="text"
                                             placeholder="cyberpunk-pack"
                                             className="w-full bg-orange-50/50 border-2 border-black p-3 rounded-xl font-bold text-xs focus:bg-white outline-none"
-                                            
+                                            disabled
                                         />
                                     </div>
                                     <div>

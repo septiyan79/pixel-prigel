@@ -55,7 +55,7 @@ const App = () => {
                 <Route index element={<AdmProductList />} />
                 <Route path="list" element={<AdmProductList />} />
                 <Route path="create" element={<AdmProductCreate />} />
-                <Route path=":productId" element={<AdmProductDetail />} />
+                <Route path=":slug" element={<AdmProductDetail />} />
               </Route>
             </Route>
           </Route>

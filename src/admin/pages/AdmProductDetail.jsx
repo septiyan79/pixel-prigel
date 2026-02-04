@@ -4,11 +4,11 @@ import { GoChevronLeft } from "react-icons/go";
 
 import { formatCurrency } from "../../utils/currency";
 import { db } from "../../firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, where, getDocs, query } from "firebase/firestore";
 
 
 export default function AdmProductDetail() {
-    const { productId } = useParams();
+    const { slug } = useParams();
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,15 +16,19 @@ export default function AdmProductDetail() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const ref = doc(db, "products", productId);
-                const snap = await getDoc(ref);
+                const q = query(
+                    collection(db, "products"),
+                    where("slug", "==", slug)
+                );
+                const snap = await getDocs(q);
 
-                if (!snap.exists()) {
+                if (snap.empty) {
                     setProduct(null);
                 } else {
+                    const docData = snap.docs[0];
                     setProduct({
-                        id: snap.id,
-                        ...snap.data()
+                        id: docData.id,
+                        ...docData.data()
                     });
                 }
             } catch (error) {
@@ -35,7 +39,7 @@ export default function AdmProductDetail() {
         };
 
         fetchProduct();
-    }, [productId]);
+    }, [slug]);
 
     if (loading) return <p>Loading Product ... </p>;
     if (!product) return <p>Product not found.</p>;
@@ -91,7 +95,7 @@ export default function AdmProductDetail() {
                                 Description
                             </p>
 
-                            <div className="text-s font-medium leading-relaxed text-gray-600">
+                            <div className="text-s font-medium leading-relaxed text-gray-600 whitespace-pre-line">
                                 {product.description
                                     .split("\n\n")
                                     .map((paragraph, index) => (
