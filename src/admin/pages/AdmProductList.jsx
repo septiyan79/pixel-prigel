@@ -9,9 +9,27 @@ import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 export default function AdmProductList() {
     const [products, setProducts] = useState([]);
 
+    const [activeTab, setActiveTab] = useState('all');
+
+    const tabs = [
+        { id: 'all', label: 'All Products', count: 12 },
+        { id: 'active', label: 'Active', count: 8 },
+        { id: 'draft', label: 'Drafts', count: 4 },
+    ];
+
     useEffect(() => {
-        getStickers().then(setProducts);
-    }, []);
+        const mapStatus = {
+            all: "all",
+            active: "active",
+            draft: "inactive",
+        };
+
+        setCurrentPage(1);
+
+        getStickers({ activeStatus: mapStatus[activeTab] })
+            .then(setProducts);
+    }, [activeTab]);
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
@@ -24,7 +42,7 @@ export default function AdmProductList() {
 
     // --- Logika Baru: Membatasi Tombol Angka (Max 5) ---
     const getPageNumbers = () => {
-        const maxPageButtons = 5; // Batas tombol yang tampil
+        const maxPageButtons = 3; // Batas tombol yang tampil
         let startPage = Math.max(1, currentPage - 2);
         let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
 
@@ -48,6 +66,37 @@ export default function AdmProductList() {
                     className="px-6 py-2 bg-orange-600 text-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
                     Create New
                 </NavLink>
+            </div>
+
+            <div className="flex flex-wrap gap-3 border-b-4 border-orange-50 pb-4 mb-3">
+                {tabs.map((tab) => {
+                    const isActive = activeTab === tab.id;
+
+                    return (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`
+                            relative px-6 py-3 rounded-xl font-black uppercase text-xs transition-all
+                            border-2 border-black
+                            ${isActive
+                                    ? 'bg-orange-600 text-white translate-x-0.5 translate-y-0.5 shadow-none'
+                                    : 'bg-white text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                                }
+                            `}
+                        >
+                            <div className="flex items-center gap-2">
+                                <span>{tab.label}</span>
+                                <span className={`
+                                            px-1.5 py-0.5 rounded text-[10px] 
+                                            ${isActive ? 'bg-white text-orange-600' : 'bg-black text-white'}
+                                `}>
+                                    {tab.count}
+                                </span>
+                            </div>
+                        </button>
+                    );
+                })}
             </div>
 
             <div className="bg-white border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
@@ -90,13 +139,19 @@ export default function AdmProductList() {
             </div>
 
             <div className="flex items-center justify-center gap-2 mt-8 pb-10">
+                <button
+                    onClick={() => setCurrentPage(1)}
+                    disabled={currentPage === 1}
+                >
+                    First
+                </button>
 
                 {/* Tombol PREV - Sekarang lebih compact (Icon Only) */}
                 <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
                     className={`w-9 h-9 flex items-center justify-center bg-white border-2 border-black rounded-lg transition-all
-      ${currentPage === 1
+                            ${currentPage === 1
                             ? 'opacity-30 cursor-not-allowed'
                             : 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-px hover:translate-y-px active:bg-orange-50'
                         }`}
@@ -106,17 +161,17 @@ export default function AdmProductList() {
 
                 {/* DAFTAR NOMOR HALAMAN */}
                 <div className="flex items-center gap-2">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    {getPageNumbers().map(number => (
                         <button
-                            key={page}
-                            onClick={() => setCurrentPage(page)}
+                            key={number}
+                            onClick={() => setCurrentPage(number)}
                             className={`w-9 h-9 flex items-center justify-center border-2 border-black rounded-lg font-black text-xs transition-all
-          ${currentPage === page
+                                    ${currentPage === number
                                     ? 'bg-orange-500 text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] scale-110 z-10'
                                     : 'bg-white text-black hover:bg-orange-50 hover:border-orange-500'
                                 }`}
                         >
-                            {page}
+                            {number}
                         </button>
                     ))}
                 </div>
@@ -126,7 +181,7 @@ export default function AdmProductList() {
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
                     className={`w-9 h-9 flex items-center justify-center bg-white border-2 border-black rounded-lg transition-all
-      ${currentPage === totalPages
+                            ${currentPage === totalPages
                             ? 'opacity-30 cursor-not-allowed'
                             : 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-px hover:translate-y-px active:bg-orange-50'
                         }`}
@@ -134,48 +189,16 @@ export default function AdmProductList() {
                     <GoChevronRight className="text-lg" />
                 </button>
 
+                <button
+                    onClick={() => setCurrentPage(totalPages)}
+                    disabled={currentPage === totalPages}
+                >
+                    Last
+                </button>
 
-
-
-                {/* 2. Navigasi Pagination */}
-                <div className="pagination-controls" style={{ marginTop: '20px', display: 'flex', gap: '5px' }}>
-
-                    {/* Tombol ke Halaman Pertama */}
-                    <button
-                        onClick={() => setCurrentPage(1)}
-                        disabled={currentPage === 1}
-                    >
-                        First
-                    </button>
-
-                    {/* Render Tombol Angka yang sudah dibatasi */}
-                    {getPageNumbers().map(number => (
-                        <button
-                            key={number}
-                            onClick={() => setCurrentPage(number)}
-                            style={{
-                                padding: '5px 10px',
-                                backgroundColor: currentPage === number ? 'blue' : 'white',
-                                color: currentPage === number ? 'white' : 'black',
-                                border: '1px solid #ccc',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            {number}
-                        </button>
-                    ))}
-
-                    {/* Tombol ke Halaman Terakhir */}
-                    <button
-                        onClick={() => setCurrentPage(totalPages)}
-                        disabled={currentPage === totalPages}
-                    >
-                        Last
-                    </button>
-
-                </div>
 
             </div>
+
         </>
     );
 }

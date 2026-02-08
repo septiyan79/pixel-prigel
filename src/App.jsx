@@ -18,6 +18,7 @@ import AdmProduct from "./admin/pages/AdmProduct";
 import AdmProductCreate from './admin/pages/AdmProductCreate';
 import AdmProductList from './admin/pages/AdmProductList';
 import AdmProductDetail from './admin/pages/AdmProductDetail';
+import AdmProductAssets from './admin/pages/AdmProductAssets';
 
 import Login from "./auth/pages/Login";
 import RequireAuth from './auth/guards/requireAuth';
@@ -58,6 +59,7 @@ const App = () => {
                 <Route path="list" element={<AdmProductList />} />
                 <Route path="create" element={<AdmProductCreate />} />
                 <Route path=":slug" element={<AdmProductDetail />} />
+                <Route path=":docId/assets" element={<AdmProductAssets />} />
               </Route>
             </Route>
           </Route>

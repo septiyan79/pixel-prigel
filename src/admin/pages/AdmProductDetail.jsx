@@ -77,6 +77,15 @@ export default function AdmProductDetail() {
                             <div className="border-2 border-dashed border-gray-200 rounded flex items-center justify-center text-xs text-gray-300 font-black">+</div>
                         </div>
                     </div>
+                    {!product.active && (
+                        <NavLink
+                            to={`/admin/product/${product.id}/assets`}
+                            className="flex-1 flex items-center justify-center bg-black text-white py-3 rounded-xl font-black uppercase text-xs shadow-[4px_4px_0px_0px_rgba(234,88,12,1)] active:shadow-none active:translate-y-1 transition-all"
+                        >
+                            Upload Assets
+                        </NavLink>
+                    )}
+
                 </div>
 
                 {/* Right: Info Column */}
@@ -131,6 +140,6 @@ export default function AdmProductDetail() {
                 </div>
 
             </div>
-        </div>
+        </div >
     );
 }

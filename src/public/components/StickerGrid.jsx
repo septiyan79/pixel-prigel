@@ -9,7 +9,7 @@ const StickerGrid = ({ getStickers }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getStickers({ limit: 5 });
+        const data = await getStickers({ limit: 4 });
         setStickers(data);
       } catch (error) {
         console.error("Error fetching sticker:", error);
