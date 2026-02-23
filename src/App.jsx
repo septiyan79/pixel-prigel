@@ -15,10 +15,10 @@ import SocialMedia from "./public/pages/SocMed";
 import AdmLayout from "./admin/layouts/AdmLayout"
 import AdmDashboard from "./admin/pages/AdmDashboard";
 import AdmProduct from "./admin/pages/AdmProduct";
-import AdmProductCreate from './admin/pages/AdmProductCreate';
 import AdmProductList from './admin/pages/AdmProductList';
 import AdmProductDetail from './admin/pages/AdmProductDetail';
-import AdmProductAssets from './admin/pages/AdmProductAssets';
+import AdmProductCreate from './admin/pages/AdmProductCreate';
+import AdmProductCreate2 from './admin/pages/AdmProductCreate2';
 
 import Login from "./auth/pages/Login";
 import RequireAuth from './auth/guards/requireAuth';
@@ -57,9 +57,9 @@ const App = () => {
               <Route path="product" element={<AdmProduct />} >
                 <Route index element={<AdmProductList />} />
                 <Route path="list" element={<AdmProductList />} />
-                <Route path="create" element={<AdmProductCreate />} />
                 <Route path=":slug" element={<AdmProductDetail />} />
-                <Route path=":docId/assets" element={<AdmProductAssets />} />
+                <Route path="create" element={<AdmProductCreate />} />
+                <Route path=":docId/assets" element={<AdmProductCreate2 />} />
               </Route>
             </Route>
           </Route>

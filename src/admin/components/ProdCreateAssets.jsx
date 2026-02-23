@@ -1,11 +1,7 @@
 import { useState } from "react";
 import UploadBox from "./UploadBox";
 
-export default function ProdCreateAssets() {
-    const [cover, setCover] = useState(null);
-    const [gallery, setGallery] = useState([]);
-    const [asset, setAsset] = useState(null);
-
+export default function ProdCreateAssets({ setCoverFile, setGalleryFiles, setAssetFile  }) {
     return (
         <>
             <div className="lg:col-span-5 space-y-6">
@@ -13,7 +9,7 @@ export default function ProdCreateAssets() {
                     step="1"
                     title="Primary Cover Image"
                     accept="image/*"
-                    onFilesChange={(file) => setCover(file)}
+                    onFilesChange={(file) => setCoverFile(file)}
                 />
             </div>
 
@@ -23,7 +19,7 @@ export default function ProdCreateAssets() {
                     title="Gallery Showcase"
                     accept="image/*"
                     mode="gallery"
-                    onFilesChange={(files) => setGallery(files)}
+                    onFilesChange={(files) => setGalleryFiles(files)}
                 />
 
                 <UploadBox
@@ -31,7 +27,7 @@ export default function ProdCreateAssets() {
                     title="Source File (PDF/ZIP)"
                     accept=".pdf,.zip"
                     mode="asset"
-                    onFilesChange={(file) => setAsset(file)}
+                    onFilesChange={(file) => setAssetFile(file)}
                 />
             </div>
         </>
