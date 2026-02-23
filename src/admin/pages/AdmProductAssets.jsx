@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { useParams, useNavigate } from "react-router-dom";
+import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 
 import ProdCreateHeader from "../components/ProdCreateHeader";
@@ -8,9 +8,14 @@ import ProdCreateAssets from "../components/ProdCreateAssets";
 
 export default function AdmProductAssets() {
     const { docId } = useParams();
+    const navigate = useNavigate();
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [coverFile, setCoverFile] = useState(null);
+    const [galleryFiles, setGalleryFiles] = useState([]);
+    const [assetFile, setAssetFile] = useState(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -34,7 +39,7 @@ export default function AdmProductAssets() {
         };
 
         fetchProduct()
-    }, [docId]);
+    }, []);
 
     if (loading) return <p>Loading Product ... </p>;
     if (!product) return <p>Product not found.</p>;
@@ -44,9 +49,10 @@ export default function AdmProductAssets() {
             <ProdCreateHeader />
 
             <div className="mb-6">
-                <h4 className="text-2xl font-black uppercase italic tracking-tighter leading-none">Create Product - Assets</h4>
+                <h4 className="text-3xl font-black uppercase italic tracking-tighter leading-none">{product.title}</h4>
+                <h5 className="text-md text-gray-500 uppercase italic tracking-tighter leading-none">Create Product - Assets</h5>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 <ProdCreateAssets />
             </div>

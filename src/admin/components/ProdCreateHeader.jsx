@@ -1,7 +1,8 @@
 import { GoChevronLeft } from "react-icons/go";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 export default function ProdCreateHeader() {
+    const { docId } = useParams();
     return (
         <div className="flex items-center justify-between">
             <NavLink
@@ -15,17 +16,27 @@ export default function ProdCreateHeader() {
             </NavLink>
 
             <div className="flex gap-3">
-                <button
-                    type="button"
-                    onClick={() => setForm(prev => ({ ...prev, active: false }))}
-                    className="px-6 py-2 bg-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
-                    Save Draft
-                </button>
+                {!docId ?
+                    <button
+                        type="button"
+                        onClick={() => setForm(prev => ({ ...prev, active: false }))}
+                        className="px-6 py-2 bg-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
+                        Save Draft
+                    </button>
+
+                    :
+                    <NavLink
+                        to="/admin/product/"
+                        className="px-6 py-2 bg-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all">
+                        Cancel
+                    </NavLink>
+
+                }
                 <button
                     type="submit"
                     className="px-6 py-2 bg-orange-600 text-white border-2 border-black rounded-xl font-black text-[11px] uppercase shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-y-0.5 transition-all"
                 >
-                    Publish Now
+                    {!docId ? "Next" : "Publish Now"}
                 </button>
             </div>
         </div>
