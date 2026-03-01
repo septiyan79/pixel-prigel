@@ -38,3 +38,35 @@ export const getStickers = async ({
         ...doc.data(),
     }));
 };
+
+// STRUKTUR DATA FIRESTORE ============================================
+// Product {
+//   id: string
+//   slug: string
+//   title: string
+//   description: string
+//   category: string
+//   tags: string[]
+//   type: "digital"
+//   license: "personal" | "commercial"
+//   active: boolean
+//   status: "draft" | "published"
+  
+//   coverImage: string
+//   galleryImages: string[]
+
+//   price: {
+//     IDR: number
+//     USD: number
+//   }
+
+//   fileAsset: {
+//     driveLink?: string
+//     images?: string[]
+//   }
+
+//   lynkid: string
+
+//   createdAt: Timestamp
+//   updatedAt: Timestamp
+// }

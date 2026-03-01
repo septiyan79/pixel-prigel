@@ -17,9 +17,12 @@ export default function AdmProductCreate2() {
 
     const [coverFile, setCoverFile] = useState(null);
     const [galleryFiles, setGalleryFiles] = useState([]);
-    const [assetFile, setAssetFile] = useState(null);
 
-    //AMBIL DATA PRODUCT ===================================================
+    // 🔥 ASSET BARU
+    const [assetFiles, setAssetFiles] = useState([]);
+    const [driveLink, setDriveLink] = useState("");
+
+    // ================= AMBIL DATA PRODUCT =================
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -33,7 +36,6 @@ export default function AdmProductCreate2() {
 
                 const data = snap.data();
 
-                // cegah akses kalau sudah publish
                 if (data.active) {
                     navigate("/admin/product");
                     return;
@@ -56,16 +58,16 @@ export default function AdmProductCreate2() {
 
     if (loading) return <p>Loading Product ... </p>;
     if (!product) return <p>Product not found.</p>;
-    //END, AMBIL DATA PRODUCT ===================================================
+    // =======================================================
 
-    //SUBMIT KE CLOUDINARY DAN UPDATE FIRESTORE ===================================================
+    // ================= SUBMIT =================
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (loading) return;
 
-        if (!coverFile || !assetFile) {
-            alert("Cover dan File Asset wajib diupload");
+        if (!coverFile) {
+            alert("Cover wajib diupload");
             return;
         }
 
@@ -74,7 +76,7 @@ export default function AdmProductCreate2() {
         try {
             const baseFolder = `pixel-prigel/products/${product.slug}`;
 
-            // 1️⃣ upload cover
+            // 1️⃣ Upload Cover
             const coverRes = await uploadToCloudinary(
                 coverFile,
                 `${baseFolder}/cover`
@@ -82,32 +84,33 @@ export default function AdmProductCreate2() {
 
             const coverUrl = coverRes.secure_url;
 
-            // 2️⃣ upload gallery (parallel)
+            // 2️⃣ Upload Gallery
             const galleryUploads = galleryFiles.map((file) =>
                 uploadToCloudinary(file, `${baseFolder}/gallery`)
             );
 
             const galleryResults = await Promise.all(galleryUploads);
-
             const galleryUrls = galleryResults.map((r) => r.secure_url);
 
-            // 3️⃣ upload asset file
-            const assetRes = await uploadToCloudinary(
-                assetFile,
-                `${baseFolder}/asset`
+            // 3️⃣ Upload Asset Images
+            const assetUploads = assetFiles.map((file) =>
+                uploadToCloudinary(file, `${baseFolder}/asset`)
             );
 
-            const assetData = {
-                url: assetRes.secure_url,
-                format: assetRes.format,
-                size: assetRes.bytes,
+            const assetResults = await Promise.all(assetUploads);
+            const assetImageUrls = assetResults.map((r) => r.secure_url);
+
+            // 🔥 FILE ASSET MAP STRUCTURE
+            const fileAssetData = {
+                images: assetImageUrls,
+                driveLink: driveLink || null,
             };
 
-            // 4️⃣ update firestore
+            // 4️⃣ Update Firestore
             await updateDoc(doc(db, "products", docId), {
                 coverImage: coverUrl,
                 galleryImages: galleryUrls,
-                fileAsset: assetData,
+                fileAsset: fileAssetData,
                 active: true,
                 status: "published",
                 updatedAt: serverTimestamp(),
@@ -122,8 +125,7 @@ export default function AdmProductCreate2() {
             setLoading(false);
         }
     };
-    //END, SUBMIT KE CLOUDINARY DAN UPDATE FIRESTORE ===================================================
-
+    // =======================================================
 
     return (
         <div className="space-y-6">
@@ -131,15 +133,23 @@ export default function AdmProductCreate2() {
                 <ProdCreateHeader />
 
                 <div className="mb-6">
-                    <h4 className="text-3xl font-black uppercase italic tracking-tighter leading-none">{product.title}</h4>
-                    <h5 className="text-md text-gray-500 uppercase italic tracking-tighter leading-none">Create Product - Assets</h5>
+                    <h4 className="text-3xl font-black uppercase italic tracking-tighter leading-none">
+                        {product.title}
+                    </h4>
+                    <h5 className="text-md text-gray-500 uppercase italic tracking-tighter leading-none">
+                        Create Product - Assets
+                    </h5>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                     <ProdCreateAssets
                         setCoverFile={setCoverFile}
                         setGalleryFiles={setGalleryFiles}
-                        setAssetFile={setAssetFile}
+
+                        // 🔥 kirim yang baru
+                        setAssetFiles={setAssetFiles}
+                        driveLink={driveLink}
+                        setDriveLink={setDriveLink}
                     />
                 </div>
             </form>
