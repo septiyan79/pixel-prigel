@@ -49,7 +49,11 @@ const StickerDetail = () => {
 
     // IMAGE
     const images = product
-        ? [product.coverImage, ...(product.galleryImages || [])]
+        ? [
+            typeof product.coverImage === "string"
+                ? product.coverImage
+                : product.coverImage?.url
+        ].filter(Boolean).concat(product.galleryImages || [])
         : [];
 
     const nextImage = () => {

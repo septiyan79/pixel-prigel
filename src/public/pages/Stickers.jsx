@@ -63,7 +63,11 @@ const Stickers = () => {
                                 {/* Square Image */}
                                 <div className={`aspect-square rounded-[1.8rem] bg-orange-100 mb-5 flex items-center justify-center border-2 border-orange-50 relative overflow-hidden`}>
                                     <img
-                                        src={product.coverImage}
+                                        src={
+                                            typeof product.coverImage === "string"
+                                                ? product.coverImage
+                                                : product.coverImage?.url
+                                        }
                                         alt={product.title}
                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 p-8"
                                     />

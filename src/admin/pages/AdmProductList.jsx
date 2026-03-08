@@ -116,7 +116,11 @@ export default function AdmProductList() {
                         {currentItems.map((p) => (
                             <tr key={p.id} className="hover:bg-orange-50/30 transition-colors">
                                 <td className="p-3 border-r-2 border-black/5">
-                                    <img src={p.coverImage} className="w-10 h-10 rounded-lg border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] object-cover" />
+                                    <img src={
+                                        typeof p.coverImage === "string"
+                                            ? p.coverImage
+                                            : p.coverImage?.url
+                                    } className="w-10 h-10 rounded-lg border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] object-cover" />
                                 </td>
                                 <td className="p-3 border-r-2 border-black/5">
                                     <p className="font-black text-xs uppercase">{p.title}</p>

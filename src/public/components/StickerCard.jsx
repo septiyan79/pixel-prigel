@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const StickerCard = ({ item }) => {
   return (
     <div className="group relative">
@@ -6,7 +8,11 @@ const StickerCard = ({ item }) => {
       <div className="relative bg-white border-2 border-orange-600 rounded-3xl p-4 flex flex-col h-full">
         <div className={`aspect-square rounded-2xl bg-orange-100 mb-4 relative overflow-hidden`}>
           <img
-            src={item.coverImage}
+            src={
+              typeof item.coverImage === "string"
+                ? item.coverImage
+                : item.coverImage?.url
+            }
             alt={item.title}
             className="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-110 transition-transform duration-500"
           />
@@ -26,7 +32,7 @@ const StickerCard = ({ item }) => {
         </span>
 
         <button className="py-3 bg-orange-600 text-white rounded-xl font-black uppercase">
-          View Details
+          <Link to={`/stickers/${item.id}`}>View Details</Link>
         </button>
       </div>
     </div>
