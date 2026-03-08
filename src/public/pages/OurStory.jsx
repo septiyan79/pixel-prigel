@@ -40,7 +40,7 @@ export default function OurStory() {
                         <div className="absolute inset-0 bg-black rounded-4xl rotate-3 group-hover:rotate-0 transition-transform duration-300"></div>
                         <div className="relative bg-orange-100 border-2 border-orange-600 rounded-4xl aspect-4/3 flex items-center justify-center overflow-hidden">
                             <img
-                                src="../../public/pxp-bg.png"
+                                src="https://res.cloudinary.com/dadi1h3eq/image/upload/v1772960384/pxp-bg_rdo96v.png"
                                 alt="Creative Workspace"
                                 className="w-full h-full object-cover"
                             />

@@ -48,7 +48,7 @@ const Login = () => {
                     </div>
 
                     {/* Elemen Dekoratif Sticker-like */}
-                    <div className="absolute bottom-10 right-15 md:right-auto md:left-10 transform -rotate-12 bg-white border-2 border-black p-2 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="absolute bottom-0 right-5 md:bottom-10 md:right-auto md:left-10 transform -rotate-12 bg-white border-2 border-black p-2 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                         <span className="text-xs font-black uppercase text-orange-600">✨ Pixel Prigel</span>
                     </div>
 

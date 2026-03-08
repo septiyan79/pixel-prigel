@@ -22,7 +22,12 @@ export default function Recomendation() {
                     <Link key={i.id} to={`/stickers/${i.id}`}>
                         <div className="bg-white border-2 border-black p-3 rounded-2xl hover:rotate-2 transition-transform cursor-pointer shadow-[4px_4px_0px_0px_rgba(234,88,12,1)]">
                             <div className="aspect-square bg-orange-100 rounded-xl mb-3 overflow-hidden">
-                                <img src={i.coverImage} alt="Related" className="w-full h-full object-cover" />
+                                <img src={
+                                    typeof i.coverImage === "string"
+                                        ? i.coverImage
+                                        : i.coverImage?.url
+                                }
+                                    alt="Related" className="w-full h-full object-cover" />
                             </div>
                             <div className="font-black text-xs uppercase truncate">{i.title}</div>
                         </div>
